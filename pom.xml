@@ -31,7 +31,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -52,7 +51,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.3.Final</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
