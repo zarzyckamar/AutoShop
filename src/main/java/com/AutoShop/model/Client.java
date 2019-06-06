@@ -29,4 +29,10 @@ public class Client {
     private List<Order> orders = new ArrayList<>();
 
 
+    public Client( String firstName, String lastName, String address) {
+
+        this.firstName=firstName;
+        this.lastName =lastName;
+        this.address =address;
+    }
 }
