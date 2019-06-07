@@ -1,6 +1,8 @@
 package com.AutoShop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,16 +21,19 @@ public class Order {
     private String datetime;
 
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name="id_vehicle")
     private Vehicle vehicle;
 
+
+    @JsonIgnoreProperties ({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_client")
     private Client client;
 
-
+    public Order(){}
 
     public Order (String datetime, Vehicle vehicle, Client client){
         this.datetime = datetime;

@@ -20,7 +20,7 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
-    @RequestMapping(value = "/allOrders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/allProducts", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Vehicle> listOfOrders() {
         return vehicleService.listAllVehicles();
     }

@@ -5,6 +5,8 @@ import com.AutoShop.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClientServiceImpl implements ClientService {
 
@@ -17,7 +19,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client getById(Integer id) {
+    public Optional<Client> getById(Long id) {
         return clientRepository.findById(id);
     }
 
@@ -28,5 +30,10 @@ public class ClientServiceImpl implements ClientService {
         c1.setAddress(address);
         clientRepository.save(c1);
         return "Saved";
+    }
+
+    public String deleteClient(Long id){
+        clientRepository.deleteById(id);
+        return "Deleted";
     }
 }

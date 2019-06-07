@@ -2,13 +2,14 @@ package com.AutoShop.controller;
 
 
 import com.AutoShop.model.Client;
-import com.AutoShop.repository.ClientRepository;
 import com.AutoShop.service.ClientService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @Data
 @RestController
@@ -34,8 +35,12 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Client getByPublicId(@PathVariable("id") Integer publicId) {
+    public Optional<Client> getByPublicId(@PathVariable("id") Long publicId) {
         return clientService.getById(publicId);
     }
 
+    @RequestMapping(value = "/deleteClient/{id}", method = RequestMethod.DELETE)
+    public String deleteClient(@PathVariable Long id) {
+        return clientService.deleteClient(id);
+    }
 }

@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-//
-//
-//    @RequestMapping(value = "/allOrders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Iterable<Order> listOfOrders() {
-//        return orderService.listAllOrders();
-//    }
+
+
+    @RequestMapping(value = "/allOrders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Order> listOfOrders() {
+        return orderService.listAllOrders();
+    }
 }
