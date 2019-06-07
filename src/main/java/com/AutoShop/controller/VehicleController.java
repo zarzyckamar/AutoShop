@@ -4,12 +4,11 @@ import com.AutoShop.model.Client;
 import com.AutoShop.model.Vehicle;
 import com.AutoShop.repository.ClientRepository;
 import com.AutoShop.repository.VehicleRepository;
+import com.AutoShop.service.VehicleService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 
 @Data
@@ -19,12 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class VehicleController {
 
     @Autowired
-    private VehicleRepository vehicleRepository;
+    private VehicleService vehicleService;
 
-    @RequestMapping(path="/allProducts")
-    public @ResponseBody
-    Iterable<Vehicle> getAllClients() {
-        return vehicleRepository.findAll();
+    @RequestMapping(value = "/allOrders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Vehicle> listOfOrders() {
+        return vehicleService.listAllVehicles();
     }
 
 }

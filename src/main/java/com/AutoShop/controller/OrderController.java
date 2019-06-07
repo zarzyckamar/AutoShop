@@ -5,10 +5,9 @@ import com.AutoShop.repository.OrderRepository;
 import com.AutoShop.service.OrderService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Data
 @RestController
@@ -17,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
-    @Autowired
-    private OrderRepository orderRepository;
-
+//
+//
+//    @RequestMapping(value = "/allOrders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Iterable<Order> listOfOrders() {
+//        return orderService.listAllOrders();
+//    }
 }

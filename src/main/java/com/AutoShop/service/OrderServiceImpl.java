@@ -9,4 +9,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Override
+    public Iterable<Order> listAllOrders() {
+        return orderRepository.findAll();
+    }
 }

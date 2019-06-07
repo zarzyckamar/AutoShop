@@ -10,4 +10,8 @@ public class VehicleServiceImpl implements VehicleService {
     @Autowired
     private VehicleRepository vehicleRepository;
 
+    @Override
+    public Iterable<Vehicle> listAllVehicles() {
+        return vehicleRepository.findAll();
+    }
 }

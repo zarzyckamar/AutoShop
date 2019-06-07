@@ -7,6 +7,7 @@ import com.AutoShop.service.ClientService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Data
@@ -18,25 +19,17 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @Autowired
-    private ClientRepository clientRepository;
 
 
-    @RequestMapping(path="/allClients")
-    public @ResponseBody Iterable<Client> getAllClients() {
-        return clientRepository.findAll();
+    @RequestMapping(value = "/allClients", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Client> listOfClients() {
+        return clientService.listAllClients();
     }
 
-
-    @RequestMapping(value = "/addclient", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/addClient", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String addNewClient(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String address) {
-        Client c1 = new Client();
-        c1.setFirstName(firstName);
-        c1.setLastName(lastName);
-        c1.setAddress(address);
-        clientRepository.save(c1);
-        return "Saved";
+        return clientService.addClient(firstName, lastName, address);
 
     }
 
