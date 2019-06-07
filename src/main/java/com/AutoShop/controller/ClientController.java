@@ -22,7 +22,7 @@ public class ClientController {
     private ClientRepository clientRepository;
 
 
-    @RequestMapping(path="/all")
+    @RequestMapping(path="/allClients")
     public @ResponseBody Iterable<Client> getAllClients() {
         return clientRepository.findAll();
     }

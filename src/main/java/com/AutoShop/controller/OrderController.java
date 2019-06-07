@@ -20,11 +20,5 @@ public class OrderController {
 
     @Autowired
     private OrderRepository orderRepository;
-//
-//    @RequestMapping(path="/all")
-//    public @ResponseBody
-//    Iterable<Order> getAllOrders() {
-//        return orderRepository.findAll();
-//    }
 
 }
