@@ -12,11 +12,6 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public Client saveClient(Client product) {
-        return clientRepository.save(product);
-    }
-
-    @Override
     public Client getById(Integer id) {
         return clientRepository.findById(id);
     }

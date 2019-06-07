@@ -49,6 +49,7 @@ public class DataLoader implements ApplicationRunner {
         clientRepository.save(client3);
         clientRepository.save(client4);
 
+// dodawanie orderow zawsze musi byc miedzy client a vehicle
         orderRepository.save(order1);
         orderRepository.save(order2);
 

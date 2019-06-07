@@ -10,8 +10,4 @@ public class VehicleServiceImpl implements VehicleService {
     @Autowired
     private VehicleRepository vehicleRepository;
 
-    @Override
-    public Vehicle saveVehicle (Vehicle vehicle) {
-        return vehicleRepository.save(vehicle);
-    }
 }
