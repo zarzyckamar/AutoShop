@@ -5,4 +5,6 @@ import com.AutoShop.model.Client;
 public interface ClientService {
     Client saveClient(Client product);
 
+    Client getById(Integer id);
+
 }
