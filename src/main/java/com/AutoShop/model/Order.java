@@ -14,6 +14,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    @Column
+    private String datetime;
+
+
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name="id_vehicle")
@@ -24,8 +29,11 @@ public class Order {
     private Client client;
 
 
-    @Column
-    private String datetime;
 
+    public Order (String datetime, Vehicle vehicle, Client client){
+        this.datetime = datetime;
+        this.vehicle = vehicle;
+        this.client =client;
 
+    }
 }

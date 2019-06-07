@@ -18,5 +18,15 @@ public class Motorcycle extends Vehicle {
 
     @Column(name ="CAPACITY")
     private int capacity;
+
+    public Motorcycle(){}
+
+    public Motorcycle(String name, int price, int horsePower, int capacity){
+        super.setName(name);
+        super.setPrice(price);
+        this.horsePower=horsePower;
+        this.capacity = capacity;
+    }
+
 }
 

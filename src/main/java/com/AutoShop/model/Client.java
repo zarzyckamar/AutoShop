@@ -35,4 +35,5 @@ public class Client {
         this.lastName =lastName;
         this.address =address;
     }
+    public Client(){}
 }
