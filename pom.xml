@@ -51,6 +51,11 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.3.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>com.itextpdf.maven</groupId>
+			<artifactId>itextdoc</artifactId>
+			<version>2.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
