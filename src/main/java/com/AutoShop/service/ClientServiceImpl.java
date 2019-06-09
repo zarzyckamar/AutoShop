@@ -23,7 +23,7 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.findById(id);
     }
 
-    public String addClient (String firstName, String lastName, String address) {
+    public String addClient(String firstName, String lastName, String address) {
         Client c1 = new Client();
         c1.setFirstName(firstName);
         c1.setLastName(lastName);
@@ -32,8 +32,7 @@ public class ClientServiceImpl implements ClientService {
         return "Saved";
     }
 
-    public String deleteClient(Long id){
+    public void deleteClient(Long id) {
         clientRepository.deleteById(id);
-        return "Deleted";
     }
 }

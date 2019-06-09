@@ -12,5 +12,5 @@ public interface ClientService {
 
     String addClient(String firstName, String lastName, String address);
 
-    String deleteClient(Long id);
+    void deleteClient(Long id);
 }
