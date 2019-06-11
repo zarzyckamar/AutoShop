@@ -2,8 +2,17 @@ package com.AutoShop;
 
 import org.junit.Test;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.HttpURLConnection;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AutoTests {
 
