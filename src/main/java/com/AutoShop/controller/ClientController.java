@@ -41,8 +41,9 @@ public class ClientController {
     }
 
     @RequestMapping(value = "/deleteClient/{id}", method = RequestMethod.DELETE)
-    public void deleteClient(@PathVariable Long id) {
+    public String deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
+        return "DELETED";
     }
 
     @RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
