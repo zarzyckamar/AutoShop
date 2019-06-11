@@ -36,11 +36,11 @@ public class AutoTests {
     public void pingTest() {
         given()
                 .when()
-                .request("GET", UriComponentsBuilder
-                .fromHttpUrl(ENDPOINT_URL)
-                .path("/allProducts")
-                .build()
-                .toString())
+                .get(UriComponentsBuilder
+                        .fromHttpUrl(ENDPOINT_URL)
+                        .path("/allProducts")
+                        .build()
+                        .toString())
                 .then()
                 .statusCode(200);
     }
