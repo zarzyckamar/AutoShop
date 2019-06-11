@@ -4,13 +4,10 @@ import org.junit.Test;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class AutoTests {
@@ -59,32 +56,27 @@ public class AutoTests {
                 .body("lastName", equalTo("Grubinski"));
     }
 
-
     @Test
     public void shouldRemoveUser() throws IOException {
-        // given
-        URL obj = new URL(UriComponentsBuilder
-                .fromHttpUrl(ENDPOINT_URL)
-                .path("/deleteClient/2")
-                .build().toString());
-        // when
-        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-        connection.setRequestMethod("DELETE");
-        // then
-        assertThat(String.valueOf(connection.getResponseCode())).isEqualTo("200");
-
+        given()
+                .when()
+                .delete(UriComponentsBuilder
+                        .fromHttpUrl(ENDPOINT_URL)
+                        .path("/deleteClient/2")
+                        .build().toString())
+                .then()
+                .statusCode(200);
     }
 
     @Test
     public void shouldNotRemoveUser() throws IOException {
-        // given
-        URL obj = new URL(UriComponentsBuilder.fromHttpUrl(ENDPOINT_URL).path("/deleteClient/10").build().toString());
-        // when
-        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-        connection.setRequestMethod("DELETE");
-        // then
-        assertThat(String.valueOf(connection.getResponseCode())).isEqualTo("500");
-
+        given()
+                .when()
+                .delete(UriComponentsBuilder
+                        .fromHttpUrl(ENDPOINT_URL)
+                        .path("/deleteClient/10")
+                        .build().toString())
+                .then()
+                .statusCode(500);
     }
-
 }
