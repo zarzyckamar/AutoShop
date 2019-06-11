@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @RestController
@@ -30,16 +31,16 @@ public class OrderController {
         return orderService.listAllOrders();
     }
 
-    @RequestMapping(value = "/pdfreport", method = RequestMethod.GET,
+    @RequestMapping(value = "/faktura-pdf/{id}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> citiesReport() {
+    public ResponseEntity<InputStreamResource> ordersReportMethod(@PathVariable("id") Long orderId) {
 
-        var orders = (List<Order>) orderService.findAll();
 
-        ByteArrayInputStream bis = GeneratePdfReport.ordersReport(orders);
+        Optional<Order> order = orderService.findOrderById(orderId);
+        ByteArrayInputStream bis = GeneratePdfReport.ordersReport(order);
 
         var headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+        headers.add("Content-Disposition", "inline; filename = faktura.pdf");
 
         return ResponseEntity
                 .ok()
