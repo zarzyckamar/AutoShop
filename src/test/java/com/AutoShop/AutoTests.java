@@ -1,18 +1,10 @@
 package com.AutoShop;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class AutoTests {
 
     @Test
@@ -28,7 +20,7 @@ public class AutoTests {
             e.printStackTrace();
         }
     }
-    
+
     @Test
     public void pingTest() {
         given().when().request("GET", "http://localhost:8081/allProducts").then().statusCode(200);
@@ -44,5 +36,28 @@ public class AutoTests {
                 .body("lastName", equalTo("Stefanczyk"));
     }
 
+
+    @Test
+    public void shouldRemoveUser() throws IOException {
+        // given
+        URL obj = new URL(UriComponentsBuilder.fromHttpUrl(URL).path("/deleteClient/2").build().toString());
+        // when
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        connection.setRequestMethod("DELETE");
+        // then
+        assertThat(String.valueOf(connection.getResponseCode())).isEqualTo("200");
+
+    }
+    @Test
+    public void shouldNotRemoveUser() throws IOException {
+        // given
+        URL obj = new URL(UriComponentsBuilder.fromHttpUrl(URL).path("/deleteClient/10").build().toString());
+        // when
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        connection.setRequestMethod("DELETE");
+        // then
+        assertThat(String.valueOf(connection.getResponseCode())).isEqualTo("500");
+
+    }
 
 }
