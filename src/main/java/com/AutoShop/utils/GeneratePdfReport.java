@@ -2,25 +2,21 @@ package com.AutoShop.utils;
 
 import com.AutoShop.model.Order;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.sun.istack.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.util.List;
+import java.util.Optional;
 
 public class GeneratePdfReport {
 
     private static final Logger logger = LoggerFactory.getLogger(GeneratePdfReport.class);
 
-    public static ByteArrayInputStream ordersReport(Order newOrder) {
-
+    public static ByteArrayInputStream ordersReport(Optional<Order> newOrder) {
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -47,21 +43,22 @@ public class GeneratePdfReport {
 
             PdfPCell cell;
 
-            cell = new PdfPCell(new Phrase(newOrder.getId()));
+            cell = new PdfPCell(new Phrase(newOrder.get().getId().toString()));
+            cell.setPadding(20);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
 
-            cell = new PdfPCell(new Phrase(newOrder.getClient().getFirstName() + newOrder.getClient().getLastName() + newOrder.getClient().getAddress()));
-            cell.setPaddingLeft(5);
+            cell = new PdfPCell(new Phrase(newOrder.get().getClient().getFirstName() + ' ' + newOrder.get().getClient().getLastName() + "\n\n" + newOrder.get().getClient().getAddress()));
+            cell.setPadding(20);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
 
-            cell = new PdfPCell(new Phrase(newOrder.getVehicle().getName() + newOrder.getVehicle().getPrice()));
+            cell = new PdfPCell(new Phrase(newOrder.get().getVehicle().getName() + "\n\nNALEŻNOŚĆ: " + newOrder.get().getVehicle().getPrice() + " PLN"));
+            cell.setPadding(20);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-            cell.setPaddingRight(5);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
 
 
@@ -69,7 +66,6 @@ public class GeneratePdfReport {
             document.open();
             document.add(new Paragraph("Faktura - zamówienia \n\n"));
             document.add(table);
-
 
             document.close();
 
