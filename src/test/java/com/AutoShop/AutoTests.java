@@ -57,7 +57,7 @@ public class AutoTests {
     }
 
     @Test
-    public void shouldRemoveUser() throws IOException {
+    public void shouldRemoveUser() {
         given()
                 .when()
                 .delete(UriComponentsBuilder
@@ -69,14 +69,30 @@ public class AutoTests {
     }
 
     @Test
-    public void shouldNotRemoveUser() throws IOException {
+    public void shouldNotRemoveUser() {
         given()
                 .when()
                 .delete(UriComponentsBuilder
                         .fromHttpUrl(ENDPOINT_URL)
-                        .path("/deleteClient/10")
+                        .path("/deleteClient/100")
                         .build().toString())
                 .then()
                 .statusCode(500);
     }
+
+    @Test
+    public void shouldAddClient() {
+        given()
+                .when()
+                .post(UriComponentsBuilder
+                        .fromHttpUrl(ENDPOINT_URL)
+                        .path("/addClient")
+                        .queryParam("firstName", "testName")
+                        .queryParam("lastName", "testSurname")
+                        .queryParam("address", "testAddress")
+                        .build().toString())
+                .then()
+                .statusCode(200);
+    }
+
 }
