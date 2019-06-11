@@ -15,13 +15,14 @@ import java.net.HttpURLConnection;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AutoTests {
+    private static final String ENDPOINT_URL = "http://localhost:8081";
+    private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/database?user=admin&password=admin";
 
     @Test
     public void connectWithDatabase() {
-        String Url = "jdbc:postgresql://localhost:5432/database?user=admin&password=admin";
         try {
             Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection(Url);
+            Connection connection = DriverManager.getConnection(DATABASE_URL);
             System.out.println("Connection Established Successfull with DataBase: "
                     + connection.getMetaData().getDatabaseProductName());
         } catch (Exception e) {
@@ -39,17 +40,17 @@ public class AutoTests {
     public void verifyClientName() {
         given()
                 .when()
-                .get("http://localhost:8081/clients/2")
+                .get("http://localhost:8081/clients/1")
                 .then()
                 .statusCode(200)
-                .body("lastName", equalTo("Stefanczyk"));
+                .body("lastName", equalTo("Grubinski"));
     }
 
 
     @Test
     public void shouldRemoveUser() throws IOException {
         // given
-        URL obj = new URL(UriComponentsBuilder.fromHttpUrl(URL).path("/deleteClient/2").build().toString());
+        URL obj = new URL(UriComponentsBuilder.fromHttpUrl(ENDPOINT_URL).path("/deleteClient/2").build().toString());
         // when
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod("DELETE");
@@ -60,7 +61,7 @@ public class AutoTests {
     @Test
     public void shouldNotRemoveUser() throws IOException {
         // given
-        URL obj = new URL(UriComponentsBuilder.fromHttpUrl(URL).path("/deleteClient/10").build().toString());
+        URL obj = new URL(UriComponentsBuilder.fromHttpUrl(ENDPOINT_URL).path("/deleteClient/10").build().toString());
         // when
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod("DELETE");
