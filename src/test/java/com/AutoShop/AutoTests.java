@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class AutoTests {
-    private static final String ENDPOINT_URL = "http://localhost:8081";
+    private static final String ENDPOINT_URL = "http://localhost:8081/api";
 
 
 
@@ -72,7 +72,7 @@ public class AutoTests {
                 .when()
                 .get(UriComponentsBuilder
                         .fromHttpUrl(ENDPOINT_URL)
-                        .path("/clients/1")
+                        .path("/clientById/1")
                         .build()
                         .toString())
                 .then()
