@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Data
 @RestController
-@RequestMapping(path="/")
-@CrossOrigin(origins = "http://localhost:8081")
+@RequestMapping(path="/api")
+@CrossOrigin(origins = "*")
 public class VehicleController {
 
     @Autowired

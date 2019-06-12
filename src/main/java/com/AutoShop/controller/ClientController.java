@@ -15,8 +15,8 @@ import java.util.Optional;
 
 @Data
 @RestController
-@RequestMapping(path = "/")
-@CrossOrigin(origins = "http://localhost:8081")
+@RequestMapping(path = "/api")
+@CrossOrigin(origins = "*")
 public class ClientController {
 
     @Autowired
