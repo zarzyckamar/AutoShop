@@ -3,7 +3,6 @@ package com.AutoShop;
 import org.junit.Test;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -30,7 +29,7 @@ public class AutoTests {
     }
 
     @Test
-    public void pingTest() {
+    public void shouldReturnAllProducts() {
         given()
                 .when()
                 .get(UriComponentsBuilder
@@ -95,4 +94,27 @@ public class AutoTests {
                 .statusCode(200);
     }
 
+    @Test
+    public void shouldReturnAllClients() {
+        given()
+                .when()
+                .get(UriComponentsBuilder
+                        .fromHttpUrl(ENDPOINT_URL)
+                        .path("/allClients")
+                        .build().toString())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void shouldReturnAllOrders() {
+        given()
+                .when()
+                .get(UriComponentsBuilder
+                        .fromHttpUrl(ENDPOINT_URL)
+                        .path("/allOrders")
+                        .build().toString())
+                .then()
+                .statusCode(200);
+    }
 }
