@@ -35,19 +35,19 @@ public class ClientController {
         return clientService.addClient(firstName, lastName, address);
     }
 
-    @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Optional<Client> getByPublicId(@PathVariable("id") Long publicId) {
-        return clientService.getById(publicId);
-    }
-
     @RequestMapping(value = "/deleteClient/{id}", method = RequestMethod.DELETE)
     public String deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
         return "DELETED";
     }
 
-    @RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/modifyClient/{id}", method = RequestMethod.PUT)
     public Client replaceClient(@RequestBody Client newClient, @PathVariable Long id) {
         return clientService.replaceClient(id, newClient);
+    }
+
+    @RequestMapping(value = "/clientById/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Optional<Client> getByPublicId(@PathVariable("id") Long publicId) {
+        return clientService.getById(publicId);
     }
 }

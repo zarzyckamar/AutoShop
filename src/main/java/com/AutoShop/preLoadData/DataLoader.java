@@ -29,10 +29,10 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args){
 
-        Client client1 = new Client("Marian", "Grubinski","Poznań");
-        Client client2 =  new Client("Stefan", "Stefanczyk","Wrocław");
-        Client client3 = new Client("Marianna", "Sadurczyk","Szczecin");
-        Client client4 = new Client("Marcin", "Kokolewski","Poznań");
+        Client client1 = new Client("Marian", "Grubinski","Poznan");
+        Client client2 =  new Client("Stefan", "Stefanczyk","Warszawa");
+        Client client3 = new Client("Marianna", "Sadurczyk","Gdynia");
+        Client client4 = new Client("Marcin", "Kokolewski","Szczecin");
 
 
         Car car1 = new Car ("Ford Fiesta", 25000, 150, 5);
@@ -49,7 +49,6 @@ public class DataLoader implements ApplicationRunner {
         clientRepository.save(client3);
         clientRepository.save(client4);
 
-// dodawanie orderow zawsze musi byc miedzy client a vehicle
         orderRepository.save(order1);
         orderRepository.save(order2);
 
