@@ -30,7 +30,6 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
-
     public Client( String firstName, String lastName, String address) {
 
         this.firstName=firstName;

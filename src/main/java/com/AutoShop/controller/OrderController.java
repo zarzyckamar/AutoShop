@@ -1,17 +1,17 @@
 package com.AutoShop.controller;
 
 import com.AutoShop.model.Order;
-import com.AutoShop.repository.OrderRepository;
 import com.AutoShop.service.OrderService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Data
 @RestController
-@RequestMapping(path="/")
+@RequestMapping(path = "/")
 @CrossOrigin(origins = "http://localhost:8081")
 public class OrderController {
     @Autowired
@@ -23,5 +23,9 @@ public class OrderController {
         return orderService.listAllOrders();
     }
 
-
+    @RequestMapping(value = "/faktura-pdf/{id}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> ordersReportMethod(@PathVariable("id") Long orderId) {
+        return orderService.ordersReportMethod(orderId);
+    }
 }

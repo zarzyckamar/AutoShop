@@ -48,14 +48,6 @@ public class ClientController {
 
     @RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
     public Client replaceClient(@RequestBody Client newClient, @PathVariable Long id) {
-        return clientRepository.findById(id).map(client -> {
-            client.setFirstName(newClient.getFirstName());
-            client.setLastName(newClient.getLastName());
-            client.setAddress(newClient.getAddress());
-            return clientRepository.save(client);
-        }).orElseGet(() -> {
-            newClient.setId(id);
-            return clientRepository.save(newClient);
-        });
+        return clientService.replaceClient(id, newClient);
     }
 }

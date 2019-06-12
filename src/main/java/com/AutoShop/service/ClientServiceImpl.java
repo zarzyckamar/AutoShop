@@ -35,4 +35,16 @@ public class ClientServiceImpl implements ClientService {
     public void deleteClient(Long id) {
         clientRepository.deleteById(id);
     }
+
+    public Client replaceClient (Long id, Client newClient) {
+        return clientRepository.findById(id).map(client -> {
+            client.setFirstName(newClient.getFirstName());
+            client.setLastName(newClient.getLastName());
+            client.setAddress(newClient.getAddress());
+            return clientRepository.save(client);
+        }).orElseGet(() -> {
+            newClient.setId(id);
+            return clientRepository.save(newClient);
+        });
+    }
 }
