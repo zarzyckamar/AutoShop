@@ -10,7 +10,7 @@ public interface ClientService {
 
     Optional<Client> getById(Long id);
 
-    String addClient(String firstName, String lastName, String address);
+    String addClient(Client client);
 
     void deleteClient(Long id);
 

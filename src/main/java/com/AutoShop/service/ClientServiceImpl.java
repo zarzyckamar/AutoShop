@@ -23,12 +23,8 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.findById(id);
     }
 
-    public String addClient(String firstName, String lastName, String address) {
-        Client c1 = new Client();
-        c1.setFirstName(firstName);
-        c1.setLastName(lastName);
-        c1.setAddress(address);
-        clientRepository.save(c1);
+    public String addClient(Client client) {
+        clientRepository.save(client);
         return "Saved";
     }
 

@@ -31,8 +31,8 @@ public class ClientController {
 
     @RequestMapping(value = "/addClient", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    String addNewClient(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String address) {
-        return clientService.addClient(firstName, lastName, address);
+    String addNewClient(@RequestBody Client newClient) {
+        return clientService.addClient(newClient);
     }
 
     @RequestMapping(value = "/deleteClient/{id}", method = RequestMethod.DELETE)
