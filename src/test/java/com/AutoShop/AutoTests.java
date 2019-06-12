@@ -1,11 +1,14 @@
 package com.AutoShop;
 
+import io.restassured.RestAssured;
 import org.junit.Test;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -35,6 +38,30 @@ public class AutoTests {
                         .path("/allProducts")
                         .build()
                         .toString())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void shouldReturnAllClients() {
+        given()
+                .when()
+                .get(UriComponentsBuilder
+                        .fromHttpUrl(ENDPOINT_URL)
+                        .path("/allClients")
+                        .build().toString())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void shouldReturnAllOrders() {
+        given()
+                .when()
+                .get(UriComponentsBuilder
+                        .fromHttpUrl(ENDPOINT_URL)
+                        .path("/allOrders")
+                        .build().toString())
                 .then()
                 .statusCode(200);
     }
@@ -93,26 +120,36 @@ public class AutoTests {
     }
 
     @Test
-    public void shouldReturnAllClients() {
+    public void shouldModifyClientById() {
+        Map<String, String> client = new HashMap<>();
+        client.put("firstName", "updateName");
+        client.put("lastName", "updateLastName");
+        client.put("address", "updateCity");
+        RestAssured.baseURI = ENDPOINT_URL;
+        RestAssured.basePath = "/modifyClient";
+
+
+        given()
+                .contentType("application/json")
+                .body(client)
+                .when()
+                .put("/3")
+                .then()
+                .statusCode(200)
+                .and()
+                .body("lastName", equalTo("updateLastName"));
+    }
+
+    @Test
+    public void shouldReturnPdf(){
         given()
                 .when()
                 .get(UriComponentsBuilder
                         .fromHttpUrl(ENDPOINT_URL)
-                        .path("/allClients")
+                        .path("/faktura-pdf/5")
                         .build().toString())
                 .then()
                 .statusCode(200);
     }
 
-    @Test
-    public void shouldReturnAllOrders() {
-        given()
-                .when()
-                .get(UriComponentsBuilder
-                        .fromHttpUrl(ENDPOINT_URL)
-                        .path("/allOrders")
-                        .build().toString())
-                .then()
-                .statusCode(200);
-    }
 }
