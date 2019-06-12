@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "MOTORCYCLE")
 public class Motorcycle extends Vehicle {
 
+
     @Column(name ="HP")
     private int horsePower;
 

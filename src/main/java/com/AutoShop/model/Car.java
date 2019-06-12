@@ -10,10 +10,6 @@ import javax.persistence.*;
 @Table(name = "CAR")
 public class Car extends Vehicle {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name ="HP")
     private int horsePower;
 
