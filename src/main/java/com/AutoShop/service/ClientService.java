@@ -13,4 +13,6 @@ public interface ClientService {
     String addClient(String firstName, String lastName, String address);
 
     void deleteClient(Long id);
+
+    Client replaceClient (Long id, Client newClient);
 }

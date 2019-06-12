@@ -28,15 +28,15 @@ public class GeneratePdfReport {
             Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 
             PdfPCell hcell;
-            hcell = new PdfPCell(new Phrase("Numer zamówienia", headFont));
+            hcell = new PdfPCell(new Phrase("Order number", headFont));
             hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(hcell);
 
-            hcell = new PdfPCell(new Phrase("Dane klienta", headFont));
+            hcell = new PdfPCell(new Phrase("Client data", headFont));
             hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(hcell);
 
-            hcell = new PdfPCell(new Phrase("Specyfikacja produktu", headFont));
+            hcell = new PdfPCell(new Phrase("Product specification", headFont));
             hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(hcell);
 
@@ -55,7 +55,7 @@ public class GeneratePdfReport {
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell);
 
-            cell = new PdfPCell(new Phrase(newOrder.get().getVehicle().getName() + "\n\nNALEŻNOŚĆ: " + newOrder.get().getVehicle().getPrice() + " PLN"));
+            cell = new PdfPCell(new Phrase(newOrder.get().getVehicle().getName() + "\n\nPrice: " + newOrder.get().getVehicle().getPrice() + " PLN"));
             cell.setPadding(20);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -64,7 +64,7 @@ public class GeneratePdfReport {
 
             PdfWriter.getInstance(document, out);
             document.open();
-            document.add(new Paragraph("Faktura - zamówienia \n\n"));
+            document.add(new Paragraph("Invoice \n\n"));
             document.add(table);
 
             document.close();
