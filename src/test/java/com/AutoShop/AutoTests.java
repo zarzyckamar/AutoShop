@@ -3,9 +3,9 @@ package com.AutoShop;
 import org.junit.Test;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -13,8 +13,10 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class AutoTests {
     private static final String ENDPOINT_URL = "http://localhost:8081";
 
+
+
     @Test
-    public void connectWithDatabase() throws ClassNotFoundException, SQLException {
+    public void connectWithDatabase() throws ClassNotFoundException, SQLException, SQLException {
 
         final String DATABASE_URL = "jdbc:postgresql://localhost:5432/database?user=admin&password=admin";
 
