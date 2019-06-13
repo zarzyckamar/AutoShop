@@ -106,17 +106,22 @@ public class AutoTests {
 
     @Test
     public void shouldAddClient() {
+        Map<String, String> client = new HashMap<>();
+        client.put("firstName", "updateName");
+        client.put("lastName", "updateLastName");
+        client.put("address", "updateCity");
+        RestAssured.baseURI = ENDPOINT_URL;
+        RestAssured.basePath = "/addClient";
+
+
         given()
+                .contentType("application/json")
+                .body(client)
                 .when()
-                .post(UriComponentsBuilder
-                        .fromHttpUrl(ENDPOINT_URL)
-                        .path("/addClient")
-                        .queryParam("firstName", "testName")
-                        .queryParam("lastName", "testSurname")
-                        .queryParam("address", "testAddress")
-                        .build().toString())
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+                .and()
+                .body("lastName", equalTo("updateLastName"));
     }
 
     @Test

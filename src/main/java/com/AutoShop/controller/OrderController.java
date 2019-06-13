@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api")
 @CrossOrigin(origins = "*")
 public class OrderController {
+
     @Autowired
     private OrderService orderService;
-
 
     @RequestMapping(value = "/allOrders", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Order> listOfOrders() {

@@ -17,13 +17,13 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(name="FIRSTNAME")
     private String firstName;
 
-    @Column
+    @Column(name="LASTNAME")
     private String lastName;
 
-    @Column
+    @Column(name="ADDRESS")
     private String address;
 
     @JsonIgnore
