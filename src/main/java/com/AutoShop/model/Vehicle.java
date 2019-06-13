@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Entity
 public class Vehicle {
 
-    // One-to-one association that assumes both the source and target share the same primary key values. dlatego tu jest samo id, z order @oneToOne ktore mapuje id
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,7 +24,8 @@ public class Vehicle {
 
     public Vehicle(){}
 
-    public Vehicle(String name){
+    public Vehicle(String name, int price){
         this.name=name;
+        this.price=price;
     }
 }

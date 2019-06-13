@@ -6,6 +6,9 @@ import com.AutoShop.model.*;
 import com.AutoShop.repository.ClientRepository;
 import com.AutoShop.repository.OrderRepository;
 import com.AutoShop.repository.VehicleRepository;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -41,8 +44,12 @@ public class DataLoader implements ApplicationRunner {
         Bike bike2 = new Bike("Gazele UltraSpeed", 2500, 12, "colourfull");
         Motorcycle motorcycle1 = new Motorcycle("Ducati Panigale V4", 55000, 210, 1000);
 
-        Order order1 = new Order("2019-08-21", bike2, client1);
-        Order order2 = new Order("2018-11-05", motorcycle1, client3);
+        DateTimeFormatter dateTimeFormatter= DateTimeFormat.forPattern("dd/MM/yyyy");
+        DateTime dateOrder1= DateTime.parse("05/05/2018", dateTimeFormatter);
+        DateTime dateOrder2= DateTime.parse("15/11/2019", dateTimeFormatter);
+
+        Order order1 = new Order(dateOrder1, bike2, client1);
+        Order order2 = new Order(dateOrder2, motorcycle1, client3);
 
         clientRepository.save(client1);
         clientRepository.save(client2);

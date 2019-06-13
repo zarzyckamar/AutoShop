@@ -1,11 +1,14 @@
 package com.AutoShop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.time.DateTimeException;
 
 @Data
 @Entity
@@ -17,8 +20,9 @@ public class Order {
     private Long id;
 
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Column
-    private String datetime;
+    private DateTime datetime;
 
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -29,13 +33,13 @@ public class Order {
 
 
     @JsonIgnoreProperties ({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_client")
     private Client client;
 
     public Order(){}
 
-    public Order (String datetime, Vehicle vehicle, Client client){
+    public Order (DateTime datetime, Vehicle vehicle, Client client){
         this.datetime = datetime;
         this.vehicle = vehicle;
         this.client =client;

@@ -13,6 +13,5 @@ public interface OrderService {
 
     Optional<Order> findOrderById(Long idOrder);
 
-
     ResponseEntity<InputStreamResource> ordersReportMethod(Long orderId);
 }

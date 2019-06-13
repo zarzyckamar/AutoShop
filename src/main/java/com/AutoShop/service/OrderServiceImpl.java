@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
         Optional<Order> order = findOrderById(orderId);
         ByteArrayInputStream bis = GeneratePdfReport.ordersReport(order);
 
-        var headers = new HttpHeaders();
+        HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename = faktura.pdf");
 
         return ResponseEntity
